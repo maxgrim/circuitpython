@@ -39,6 +39,7 @@
 
 #include "components/spi_flash/include/esp_partition.h"
 
+#include "supervisor/flash.h"
 #include "supervisor/usb.h"
 
 STATIC const esp_partition_t *_partition;
@@ -46,7 +47,8 @@ STATIC const esp_partition_t *_partition;
 // TODO: Split the caching out of supervisor/shared/external_flash so we can use it.
 #define SECTOR_SIZE 4096
 STATIC uint8_t _cache[SECTOR_SIZE];
-STATIC uint32_t _cache_lba = 0xffffffff;
+STATIC uint32_t _cache_sector = 0xffffffff;
+#define NO_SECTOR 0xffffffff
 
 void supervisor_flash_init(void) {
     _partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA,
@@ -63,10 +65,19 @@ uint32_t supervisor_flash_get_block_count(void) {
 }
 
 void port_internal_flash_flush(void) {
+    if (_cache_sector == NO_SECTOR) {
+        return;
+    }
 
+    esp_partition_erase_range(_partition, _cache_sector, SECTOR_SIZE);
+    esp_partition_write(_partition, _cache_sector, _cache, SECTOR_SIZE);
+
+    _cache_sector = NO_SECTOR;
 }
 
 mp_uint_t supervisor_flash_read_blocks(uint8_t *dest, uint32_t block, uint32_t num_blocks) {
+    supervisor_flash_flush();
+
     esp_partition_read(_partition,
         block * FILESYSTEM_BLOCK_SIZE,
         dest,
@@ -82,12 +93,14 @@ mp_uint_t supervisor_flash_write_blocks(const uint8_t *src, uint32_t lba, uint32
         uint32_t sector_offset = block_address / blocks_per_sector * SECTOR_SIZE;
         uint8_t block_offset = block_address % blocks_per_sector;
 
-        if (_cache_lba != block_address) {
+        if (_cache_sector != block_address) {
+            supervisor_flash_flush();
+
             esp_partition_read(_partition,
                 sector_offset,
                 _cache,
                 SECTOR_SIZE);
-            _cache_lba = sector_offset;
+            _cache_sector = sector_offset;
         }
         for (uint8_t b = block_offset; b < blocks_per_sector; b++) {
             // Stop copying after the last block.
