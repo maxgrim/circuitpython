@@ -73,7 +73,7 @@ void board_init(void) {
         &pin_GPIO16, // TFT_DC Command or data
         &pin_GPIO8, // TFT_CS Chip select
         &pin_GPIO21, // TFT_RST Reset
-        50000000, // Baudrate
+        40000000, // Baudrate
         0, // Polarity
         0); // Phase
 
@@ -97,7 +97,7 @@ void board_init(void) {
         MIPI_COMMAND_SET_COLUMN_ADDRESS, // Set column command
         MIPI_COMMAND_SET_PAGE_ADDRESS, // Set row command
         MIPI_COMMAND_WRITE_MEMORY_START, // Write memory command
-        0x37, // set vertical scroll command
+        NULL, // set vertical scroll command
         display_init_sequence,
         sizeof(display_init_sequence),
         &pin_GPIO6,  // backlight pin
