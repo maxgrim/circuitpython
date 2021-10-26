@@ -194,3 +194,15 @@
 [submodule "frozen/Adafruit_CircuitPython_APDS9960"]
 	path = frozen/Adafruit_CircuitPython_APDS9960
 	url = https://github.com/adafruit/Adafruit_CircuitPython_APDS9960
+[submodule "frozen/Adafruit_CircuitPython_Bitmap_Font"]
+	path = frozen/Adafruit_CircuitPython_Bitmap_Font
+	url = https://github.com/adafruit/Adafruit_CircuitPython_Bitmap_Font.git
+[submodule "frozen/Adafruit_CircuitPython_Debouncer"]
+	path = frozen/Adafruit_CircuitPython_Debouncer
+	url = https://github.com/adafruit/Adafruit_CircuitPython_Debouncer.git
+[submodule "frozen/Adafruit_CircuitPython_ImageLoad"]
+	path = frozen/Adafruit_CircuitPython_ImageLoad
+	url = https://github.com/adafruit/Adafruit_CircuitPython_ImageLoad.git
+[submodule "frozen/Adafruit_CircuitPython_PCF8563"]
+	path = frozen/Adafruit_CircuitPython_PCF8563
+	url = https://github.com/adafruit/Adafruit_CircuitPython_ImageLoad.git
