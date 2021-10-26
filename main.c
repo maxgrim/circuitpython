@@ -829,9 +829,10 @@ int __attribute__((used)) main(void) {
     supervisor_set_run_reason(RUN_REASON_STARTUP);
 
     // If not in safe mode turn on autoreload by default but before boot.py in case it wants to change it.
-    if (safe_mode == NO_SAFE_MODE) {
-        autoreload_enable();
-    }
+    // Max: disable autoreload by default
+    //if (safe_mode == NO_SAFE_MODE) {
+    //    autoreload_enable();
+    //}
 
     // By default our internal flash is readonly to local python code and
     // writable over USB. Set it here so that boot.py can change it.
