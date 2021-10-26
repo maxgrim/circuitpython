@@ -184,3 +184,12 @@
 [submodule "frozen/Adafruit_CircuitPython_MIDI"]
 	path = frozen/Adafruit_CircuitPython_MIDI
 	url = https://github.com/adafruit/Adafruit_CircuitPython_MIDI
+[submodule "frozen/Adafruit_CircuitPython_Debouncer"]
+	path = frozen/Adafruit_CircuitPython_Debouncer
+	url = git@github.com:adafruit/Adafruit_CircuitPython_Debouncer.git
+[submodule "frozen/Adafruit_CircuitPython_Imageload"]
+	path = frozen/Adafruit_CircuitPython_Imageload
+	url = git@github.com:adafruit/Adafruit_CircuitPython_Imageload.git
+[submodule "frozen/Adafruit_CircuitPython_ImageLoad"]
+	path = frozen/Adafruit_CircuitPython_ImageLoad
+	url = https://github.com/adafruit/Adafruit_CircuitPython_ImageLoad.git
