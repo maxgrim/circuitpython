@@ -209,3 +209,6 @@
 [submodule "frozen/Adafruit_CircuitPython_PCF8563"]
 	path = frozen/Adafruit_CircuitPython_PCF8563
 	url = https://github.com/adafruit/Adafruit_CircuitPython_PCF8563.git
+[submodule "frozen/Adafruit_CircuitPython_Waveform"]
+	path = frozen/Adafruit_CircuitPython_Waveform
+	url = https://github.com/adafruit/Adafruit_CircuitPython_Waveform.git
